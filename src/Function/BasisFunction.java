@@ -14,11 +14,4 @@ public abstract class BasisFunction extends AbstractFunction {
     public void setM(int m) {
         this.m = m;
     }
-
-    @Override
-    public double evaluateAt(double x) {
-        return 0;
-    }
-
-    public abstract double integrate(double a, double b);
 }

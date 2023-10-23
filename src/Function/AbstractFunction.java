@@ -14,4 +14,15 @@ public abstract class AbstractFunction {
     public abstract double evaluateAt(double x);
 
     public abstract double integrate(double a, double b);
+
+    public double[] getValueArray(double a, double b, int n) {
+        double[] valueArray = new double[n];
+        double step = (b - a) / (n - 1);
+        double x = a;
+        for (int i = 0; i < n; i++) {
+            valueArray[i] = evaluateAt(x);
+            x += step;
+        }
+        return valueArray;
+    }
 }

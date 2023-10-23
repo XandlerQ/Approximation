@@ -20,6 +20,14 @@ public class LinearFunction extends AbstractFunction {
         this.beta1 = beta1;
     }
 
+    public void adjustBeta0(double value) {
+        this.beta0 += value;
+    }
+
+    public void adjustBeta1(double value) {
+        this.beta1 += value;
+    }
+
     @Override
     public double evaluateAt(double x) {
         return this.beta0 + this.beta1 * x;
