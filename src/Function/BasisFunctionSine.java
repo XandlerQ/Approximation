@@ -10,4 +10,9 @@ public class BasisFunctionSine extends BasisFunction {
     public double integrate(double a, double b) {
         return (Math.cos(Math.PI * this.m * a) - Math.cos(Math.PI * this.m * b)) / (Math.PI * this.m);
     }
+
+    @Override
+    public BasisFunctionSine getNewInstance() {
+        return new BasisFunctionSine();
+    }
 }

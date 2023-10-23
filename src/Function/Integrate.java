@@ -1,6 +1,6 @@
 package Function;
 
-public class Integrator {
+public class Integrate {
     public static double integrate(AbstractFunction function, double a, double b) {
         return function.integrate(a, b);
     }

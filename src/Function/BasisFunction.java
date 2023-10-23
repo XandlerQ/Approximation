@@ -14,4 +14,6 @@ public abstract class BasisFunction extends AbstractFunction {
     public void setM(int m) {
         this.m = m;
     }
+
+    public abstract BasisFunction getNewInstance();
 }

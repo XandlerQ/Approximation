@@ -6,16 +6,16 @@ public class ApproximationFunction extends AbstractFunction {
     private BasisFunction basisFunction;
     private double[] basisCoordinates;
 
-    ApproximationFunction() {
+    public ApproximationFunction() {
         this.M = 0;
         this.psi = new LinearFunction(0, 0);
         this.basisFunction = null;
         this.basisCoordinates = null;
     }
 
-    public ApproximationFunction(int M, LinearFunction psi, String basis) {
+    public ApproximationFunction(int M, String basis) {
         this.M = M;
-        this.psi = psi;
+        this.psi = new LinearFunction();
         switch (basis) {
             case "Poly" -> {
                 this.basisFunction = new BasisFunctionPoly();
@@ -24,10 +24,32 @@ public class ApproximationFunction extends AbstractFunction {
                 this.basisFunction = new BasisFunctionSine();
             }
         }
+        this.basisCoordinates = new double[M];
+    }
+
+    public ApproximationFunction(int M, LinearFunction psi, String basis) {
+        this(M, basis);
+        this.psi = psi;
     }
 
     public ApproximationFunction(int M, double beta0, double beta1, String basis) {
         this(M, new LinearFunction(beta0, beta1), basis);
+    }
+
+    public int getM() {
+        return M;
+    }
+
+    public LinearFunction getPsi() {
+        return psi;
+    }
+
+    public void setPsi(LinearFunction psi) {
+        this.psi = psi;
+    }
+
+    public BasisFunction getBasisFunction() {
+        return basisFunction;
     }
 
     @Override
@@ -51,46 +73,34 @@ public class ApproximationFunction extends AbstractFunction {
     }
 
     public int getParameterCount() {
-        return this.M + 2;
+        return this.M;
     }
 
     public double[] getParameters() {
-        double[] parameters = new double[this.M + 2];
-        parameters[0] = this.psi.getBeta0();
-        parameters[1] = this.psi.getBeta1();
+        double[] parameters = new double[this.M];
         for (int m = 0; m < this.M; m++) {
-            parameters[m + 2] = this.basisCoordinates[m];
+            parameters[m] = this.basisCoordinates[m];
         }
         return parameters;
     }
 
     public double getParameter(int i) {
-        if (i == 0) return this.psi.getBeta0();
-        else if (i == 1) return this.psi.getBeta1();
-        else return this.basisCoordinates[i - 2];
+        return this.basisCoordinates[i];
     }
 
     public void setParameters(double[] parameters) {
-        this.psi.setBeta0(parameters[0]);
-        this.psi.setBeta1(parameters[1]);
-        for (int m = 0; m < this.M; m++) {
-            this.basisCoordinates[m] = parameters[m + 2];
-        }
+        if (this.M >= 0) System.arraycopy(parameters, 0, this.basisCoordinates, 0, this.M);
     }
 
     public void adjustParameter(int i, double value) {
-        if (i == 0) this.psi.adjustBeta0(value);
-        else if (i == 1) this.psi.adjustBeta1(value);
-        else this.basisCoordinates[i - 2] += value;
+        this.basisCoordinates[i] += value;
     }
 
     public void setParameter(int i, double value) {
-        if (i == 0) this.psi.setBeta0(value);
-        else if (i == 1) this.psi.setBeta1(value);
-        else this.basisCoordinates[i - 2] = value;
+        this.basisCoordinates[i] = value;
     }
 
     public double squareError(TargetFunction targetFunction) {
-        return Integrator.integrateDifferenceSquared(this, targetFunction, 0, 1);
+        return Integrate.integrateDifferenceSquared(this, targetFunction, 0, 1);
     }
 }

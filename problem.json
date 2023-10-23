@@ -1,0 +1,6 @@
+{
+	"solverType" : "Cl",
+	"basis" : "Poly",
+	"collocationType" : "Galerkin",
+	"M" : 10
+}

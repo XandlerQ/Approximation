@@ -29,4 +29,9 @@ public class BasisFunctionPoly extends BasisFunction {
 
         return value;
     }
+
+    @Override
+    public BasisFunctionPoly getNewInstance() {
+        return new BasisFunctionPoly();
+    }
 }

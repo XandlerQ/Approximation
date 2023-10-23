@@ -1,65 +1,44 @@
 public class PojoProblem {
-    private String type;
-    private double[] X;
-    private double[] Y;
-    private double[] initialParameters;
-    private int numeratorDegree;
-    private String solver;
+    private String solverType;
+    private String collocationType;
+    private String basis;
+    private int M;
 
-    PojoProblem() {
-        this.type = "None";
-        this.X = null;
-        this.Y = null;
-        this.initialParameters = null;
-        this.numeratorDegree = -1;
-        this.solver = "None";
+    public PojoProblem() {
+        this.solverType = "";
+        this.collocationType = "";
+        this.M = 0;
     }
 
-    public String getType() {
-        return type;
+    public String getSolverType() {
+        return solverType;
     }
 
-    public double[] getX() {
-        return X;
+    public String getCollocationType() {
+        return collocationType;
     }
 
-    public double[] getY() {
-        return Y;
+    public String getBasis() {
+        return basis;
     }
 
-    public double[] getInitialParameters() {
-        return initialParameters;
+    public int getM() {
+        return M;
     }
 
-    public int getNumeratorDegree() {
-        return numeratorDegree;
+    public void setSolverType(String solverType) {
+        this.solverType = solverType;
     }
 
-    public String getSolver() {
-        return solver;
+    public void setCollocationType(String collocationType) {
+        this.collocationType = collocationType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setBasis(String basis) {
+        this.basis = basis;
     }
 
-    public void setX(double[] x) {
-        X = x;
-    }
-
-    public void setY(double[] y) {
-        Y = y;
-    }
-
-    public void setInitialParameters(double[] initialParameters) {
-        this.initialParameters = initialParameters;
-    }
-
-    public void setNumeratorDegree(int numeratorDegree) {
-        this.numeratorDegree = numeratorDegree;
-    }
-
-    public void setSolver(String solver) {
-        this.solver = solver;
+    public void setM(int m) {
+        M = m;
     }
 }

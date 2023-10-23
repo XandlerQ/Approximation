@@ -4,6 +4,11 @@ public class LinearFunction extends AbstractFunction {
     private double beta0;
     private double beta1;
 
+    public LinearFunction() {
+        this.beta0 = 0;
+        this.beta1 = 0;
+    }
+
     public LinearFunction(double beta0, double beta1) {
         this.beta0 = beta0;
         this.beta1 = beta1;
