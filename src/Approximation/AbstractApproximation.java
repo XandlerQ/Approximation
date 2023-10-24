@@ -1,11 +1,12 @@
 package Approximation;
 
+import Function.AbstractFunction;
 import Function.TargetFunction;
 import Function.ApproximationFunction;
 import Function.LinearFunction;
 
 public class AbstractApproximation {
-    protected TargetFunction targetFunction;
+    protected AbstractFunction targetFunction;
     protected ApproximationFunction approximationFunction;
 
     public AbstractApproximation() {
@@ -17,7 +18,7 @@ public class AbstractApproximation {
         return approximationFunction;
     }
 
-    public TargetFunction getTargetFunction() {
+    public AbstractFunction getTargetFunction() {
         return targetFunction;
     }
 

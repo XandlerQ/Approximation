@@ -21,7 +21,7 @@ public class Integrate {
         return value;
     }
 
-    public static double integrateDifferenceSquared(AbstractFunction factor1, AbstractFunction factor2, double a, double b) {
+    public static double distance(AbstractFunction factor1, AbstractFunction factor2, double a, double b) {
         int definition = AbstractFunction.integrationDefinition;
         double step = (b - a) / definition;
         double left = a;

@@ -100,7 +100,7 @@ public class ApproximationFunction extends AbstractFunction {
         this.basisCoordinates[i] = value;
     }
 
-    public double squareError(TargetFunction targetFunction) {
-        return Integrate.integrateDifferenceSquared(this, targetFunction, 0, 1);
+    public double squareError(AbstractFunction targetFunction) {
+        return Integrate.distance(this, targetFunction, 0, 1);
     }
 }

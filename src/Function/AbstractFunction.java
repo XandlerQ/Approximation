@@ -25,4 +25,8 @@ public abstract class AbstractFunction {
         }
         return valueArray;
     }
+
+    public LinearFunction getLinearApproximation(double a, double b) {
+        return new LinearFunction(evaluateAt(a) - a * (evaluateAt(b) - evaluateAt(a)) / (b - a), (evaluateAt(b) - evaluateAt(a)) / (b - a));
+    }
 }
