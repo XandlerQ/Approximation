@@ -6,14 +6,14 @@ import Function.Integrate;
 import Function.TargetFunction;
 import Jama.Matrix;
 
-public class CollocationApproximation extends AbstractApproximation {
+public class WeightedApproximation extends AbstractApproximation {
     private Matrix collocationMatrix;
     private Matrix collocationVector;
     private double[] xArray;
     private int M;
     private double a;
     private double b;
-    public CollocationApproximation(int M, String basis, double a, double b) {
+    public WeightedApproximation(int M, String basis, double a, double b) {
         this.targetFunction = new TargetFunction();
         this.approximationFunction = new ApproximationFunction(M, basis);
         this.collocationMatrix = new Matrix(M, M);

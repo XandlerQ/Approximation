@@ -1,5 +1,5 @@
 import Approximation.AbstractApproximation;
-import Approximation.CollocationApproximation;
+import Approximation.WeightedApproximation;
 import Approximation.SquareErrorApproximation;
 import Function.TargetFunction;
 import com.google.gson.Gson;
@@ -74,14 +74,14 @@ public class App extends PApplet{
                 System.out.println(this.approximation.getApproximationFunction().squareError(this.approximation.getTargetFunction()));
             }
             case "Cl" -> {
-                this.approximation = new CollocationApproximation(problem.getM(), problem.getBasis(), this.a, this.b);
+                this.approximation = new WeightedApproximation(problem.getM(), problem.getBasis(), this.a, this.b);
                 this.approximation.deriveLinearFunction(this.a, this.b);
                 switch (problem.getCollocationType()) {
-                    case "Dot" -> ((CollocationApproximation) this.approximation).dotCollocationFillMatrices();
-                    case "Area" -> ((CollocationApproximation) this.approximation).areaCollocationFillMatrices();
-                    case "Galerkin" -> ((CollocationApproximation) this.approximation).galerkinFillMatrices();
+                    case "Dot" -> ((WeightedApproximation) this.approximation).dotCollocationFillMatrices();
+                    case "Area" -> ((WeightedApproximation) this.approximation).areaCollocationFillMatrices();
+                    case "Galerkin" -> ((WeightedApproximation) this.approximation).galerkinFillMatrices();
                 }
-                ((CollocationApproximation) this.approximation).approximate();
+                ((WeightedApproximation) this.approximation).approximate();
                 System.out.println(this.approximation.getApproximationFunction().squareError(this.approximation.getTargetFunction()));
             }
         }
